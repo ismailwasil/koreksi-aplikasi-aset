@@ -68,6 +68,7 @@ Tanpa pernah menghapus yang lama. Akibatnya:
   ```removeEventListener``` Hanya bisa bekerja kalau:
   * referensi fungsi sama persis
   * bukan function baru\
+     
   ❌ Ini SALAH (tidak bisa dihapus):
   ```javascript
   ctnr.removeEventListener("pointermove", function(e){ ... });
