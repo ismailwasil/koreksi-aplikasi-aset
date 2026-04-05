@@ -89,6 +89,7 @@ Tanpa pernah menghapus yang lama. Akibatnya:
     (tapi agak “brutal”, karena semua event hilang)
 ---
 
-> [!TIP] **Tips tambahan (biar makin smooth)**
+> [!TIP]
+**Tips tambahan (biar makin _smooth_)**
 * Gunakan ```requestAnimationFrame``` untuk animasi biar tidak lag
 * Batasi trigger (misalnya pakai throttle)
