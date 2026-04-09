@@ -177,14 +177,10 @@
                                     <span><i class="fa fa-fw fa-plus-square"></i> Klik untuk ajukan SPM</span>
                                 </button>
                             </div>
-                            <!-- Tombol Ajukan Action -->
+                            <!-- /Tombol Ajukan Action -->
                             <?php endif; ?>
-                            <br>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="kontrol">
-                            </div>
-                            <script src="<?= base_url('assets/js/tombolKabur.js') ?>"></script>
                     <?php endif; ?>
+            <br>
             </div>
             </div>
              </div>
@@ -865,6 +861,7 @@
     var pathDoc = "<?= $echo1 ?>";
 </script>
 <script src="<?= base_url('assets/js/liveSearch.js') ?>"></script>
+<script src="<?= base_url($iniKunciTombolKabur) ?>"></script>
 
 <script>
     // Ajax jumlah
