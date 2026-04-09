@@ -1,6 +1,31 @@
 # KOREKSI APLIKASI ASET
 ## ini berisi kode-kode revisi
 
+Tambahkan code berikut pada Controller yang memiliki function `pengajuan_spm()` :
+``` php
+$indicator="kunci";
+$scriptMap = [
+      'kunci' => 'assets/js/tombolKabur.js',
+      'buka'  => 'assets/js/tombolKaburNormal.js',
+];
+
+$data['iniKunciTombolKabur'] = $scriptMap[$indicator] ?? null;
+```
+### 🌟 Penjelasan
+* Code di atas merupakan Mapping Array
+* `$indicator` merupakan kondisi kunci yang akan digunakan untuk mengatur tombol
+* Secara default kondisi di atas sama dengan:
+  ``` php
+  $indicator="kunci";
+  if($indikator == "kunci"){
+        $data['iniKunciTombolKabur'] = 'assets/js/tombolKabur.js';
+  } elseif($indikator == "buka"){
+        $data['iniKunciTombolKabur'] = 'assets/js/tombolKaburNormal.js';
+  }
+  ```
+
+##
+
 Masalah “event listener numpuk” di kode kamu itu nyata—setiap checkbox dicentang, kamu terus menambahkan:
 ```javascript
 ctnr.addEventListener("pointermove", handleMove);
