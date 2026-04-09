@@ -1,29 +1,14 @@
-                                const ctrl=document.getElementById('kontrol');
+document.addEventListener("DOMContentLoaded", () => {                                
                                 const ctnr=document.getElementById('container');
                                 let ajukanBtn;
                                 if(idMasuk == 5){
                                     ajukanBtn=document.getElementById('pengajuanPUPR');
-                                    // onclick="bukaPWD()"
-                                    ajukanBtn.addEventListener('click', bukaPWD);
                                 }else{
                                     ajukanBtn=document.getElementById('btnAjuAll');
-                                    // mengatur kondisi bisa mengajukan saat pertama dimuat
-                                    ajukanBtn.setAttribute('data-bs-toggle','modal');
-                                    ajukanBtn.setAttribute('data-bs-target','#ajukanSPM');
                                 }
-                                const isiAwalTombol = ajukanBtn.innerHTML;
-                                
 
-                                ctrl.addEventListener('change', function(){
-                                    if (this.checked) {
-                                        // alert("Checkbox dicentang!");
-                                        const namaUser='Sudah Berubah ya';
-                                        // ctnr.setAttribute('style','border: 2px solid #211f1f; z-index:10');
-                                        ajukanBtn.removeAttribute('data-bs-toggle');
-                                        ajukanBtn.removeAttribute('data-bs-target');
                                         ajukanBtn.setAttribute('style','position: absolute; transition: all 0.3s ease;');
                                         ajukanBtn.classList.add('mb-6', 'mt-6');
-                                        ajukanBtn.innerHTML=namaUser;
                                         ajukanBtn.after(document.createElement('br'));
                                         // kursor berpindah
                                         // simpan posisi awal
@@ -105,15 +90,4 @@
                                         ajukanBtn.addEventListener("pointerdown", (e) => {
                                             e.preventDefault();
                                         });
-                                    }else{
-                                        ajukanBtn.innerHTML=isiAwalTombol;
-                                        ajukanBtn.removeAttribute('style');
-                                        ajukanBtn.classList.remove('mb-6','mt-6');
-                                        ajukanBtn.setAttribute('data-bs-toggle','modal');
-                                        ajukanBtn.setAttribute('data-bs-target','#ajukanSPM');
-                                        // Pastikan itu <br>, lalu hapus
-                                        if (ajukanBtn.nextSibling && ajukanBtn.nextSibling.nodeName === "BR") {
-                                            ajukanBtn.nextSibling.remove();
-                                        }
-                                    }
-                                })
+                            });
