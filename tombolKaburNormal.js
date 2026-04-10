@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 	let ajukanBtn;
-	if (idMasuk == 5) {
+	if (idMasuk == 17) {
 		ajukanBtn = document.getElementById('pengajuanPUPR');
 		// onclick="bukaPWD()"
 		ajukanBtn.addEventListener('click', bukaPWD);
