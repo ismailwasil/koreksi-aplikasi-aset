@@ -78,7 +78,7 @@ class JamKerjaLogic_libra
         $data = $this->getJamHariIni();
 
         if (!$data) {
-            return "Tidak ada jadwal hari ini";
+            return "<i>Tidak ada jadwal</i>";
         }
 
         $date_first = new DateTime($data->jam_mulai);
