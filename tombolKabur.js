@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const ctnr = document.getElementById("container");
-	const peringatan = document.getElementById("iniPeringatan");
-	peringatan.classList.add("text-danger");
-	peringatan.innerHTML = "Pengajuan SPM dibuka saat Jam Kerja";
 
 	let ajukanBtn;
-	if (idMasuk == 5) {
+	if (idMasuk == 17) {
 		ajukanBtn = document.getElementById("pengajuanPUPR");
 	} else {
 		ajukanBtn = document.getElementById("btnAjuAll");
