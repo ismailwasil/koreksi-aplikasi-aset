@@ -1,6 +1,7 @@
 # KOREKSI APLIKASI ASET
 ## ini berisi kode-kode revisi
 
+### ⚠ PENTING!!!
 Tambahkan code berikut pada Controller yang memiliki function `pengajuan_spm()` :
 ``` php
 $indicator="kunci";
