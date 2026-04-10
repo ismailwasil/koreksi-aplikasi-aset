@@ -30,6 +30,33 @@ $data['iniKunciTombolKabur'] = $scriptMap[$indicator] ?? null;
   * Kalau TIDAK ADA / undefined → pakai `null`
 
 ##
+### ⛔ Untuk Controller Developer
+Karena developer tidak boleh terpengaruh Jam Kerja maka di `public function pengajuan_spm()` atur demikian:
+``` php
+$data['status_kerja'] = "";
+$data['iniKunciTombolKabur'] = 'assets/js/tombolKaburNormal.js';
+
+$data['dataJamKerja'] = $this->JamKerja_model->getDataJamKerja();
+$data['dataHariLibur'] = $this->JamKerja_model->getHariLibur();
+```
+Kemudian buat function baru Untuk mengedit:
+``` php
+public function editJamKerja()
+    {
+        $this->load->model('JamKerja_model');
+
+        $id = $this->input->post('id_jk');
+        $jam_mulai = $this->input->post('jam_mulai');
+        $jam_selesai = $this->input->post('jam_selesai');
+        $status = $this->input->post('aktif_jk');
+
+        $this->JamKerja_model->updateJamKerja($id, $jam_mulai, $jam_selesai, $status);
+
+        redirect('developer/pengajuan_spm');
+    }
+```
+
+##
 
 ## Link Dinamis Dari Database
 Klik link berikut untuk [Kondisi Dinamis](https://chatgpt.com/share/69d7cd9a-09cc-8320-9fc8-f1f8fbfc7669)
