@@ -31,7 +31,7 @@ $data['iniKunciTombolKabur'] = $scriptMap[$indicator] ?? null;
 
 ##
 ### ⛔ Untuk Controller Developer
-Karena developer tidak boleh terpengaruh Jam Kerja maka di `public function pengajuan_spm()` atur demikian:
+Karena developer tidak boleh terpengaruh Jam Kerja maka di `public function pengajuan_spm()` tambahkan code berikut:
 ``` php
 $data['status_kerja'] = "";
 $data['iniKunciTombolKabur'] = 'assets/js/tombolKaburNormal.js';
