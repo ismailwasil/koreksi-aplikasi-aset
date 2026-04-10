@@ -196,6 +196,157 @@
                                 <!-- /Tombol Ajukan Action -->
                             <?php endif; ?>
                         <?php endif; ?>
+                        <?php if ($user['id_role'] == 4): ?>
+                            <details>
+                                <summary>Tabel Kendali</summary>
+                                <div class="row">
+                                    <div class="col-md-6 mb-5">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover mb-0 super-small-table"
+                                                style="width: 60%;">
+                                                <thead class="bg-warning text-center">
+                                                    <tr>
+                                                        <th>Hari</th>
+                                                        <th>Jam Aktiv</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-center">
+                                                    <?php
+                                                    $dayMap = [
+                                                        '1' => 'Senin',
+                                                        '2' => 'Selasa',
+                                                        '3' => 'Rabu',
+                                                        '4' => 'Kamis',
+                                                        '5' => 'Jumat',
+                                                    ];
+                                                    function jamFormat($cariJam)
+                                                    {
+                                                        return (new DateTime($cariJam))->format('H:i');
+                                                    };
+                                                    foreach ($dataJamKerja as $dtjk):
+                                                    ?>
+                                                        <tr>
+                                                            <td><?= $dayMap[$dtjk['hari_jk']] ?></td>
+                                                            <td><?= jamFormat($dtjk['jam_mulai']) . " - " . jamFormat($dtjk['jam_selesai']) . " WIB"; ?>
+                                                            </td>
+                                                            <td><?= $dtjk['aktif_jk'] == 1 ? "Aktif" : "Non Aktif" ?></td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-view"
+                                                                    data-id="<?= $dtjk['id_jk'] ?>"
+                                                                    data-hari="<?= $dtjk['hari_jk'] ?>"
+                                                                    data-jam_mulai="<?= $dtjk['jam_mulai'] ?>"
+                                                                    data-jam_selesai="<?= $dtjk['jam_selesai'] ?>"
+                                                                    data-status="<?= $dtjk['aktif_jk'] ?>"
+                                                                    data-bs-toggle="modal" data-bs-target="#modalEditJamKerja">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                            <!-- Modal Edit Jam Kerja -->
+                                            <div class="modal fade" id="modalEditJamKerja" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="titleJK">Edit Data</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <form id="formEdit" method="post"
+                                                            action="<?= base_url('developer/editJamKerja') ?>">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" id="id_jk" name="id_jk">
+
+                                                                <div class="mb-2">
+                                                                    <label class="text-white" for="jam_mulai">Jam
+                                                                        Mulai</label>
+                                                                    <input type="time" id="jam_mulai" name="jam_mulai"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <label class="text-white" for="jam_selesai">Jam
+                                                                        Selesai</label>
+                                                                    <input type="time" id="jam_selesai" name="jam_selesai"
+                                                                        class="form-control">
+                                                                </div>
+
+                                                                <div class="mb-2">
+                                                                    <label class="text-white" for="aktif_jk">Status</label>
+                                                                    <input type="text" id="aktif_jk" name="aktif_jk"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-success">Save</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                document.querySelectorAll('.btn-view').forEach(button => {
+                                                    button.addEventListener('click', function() {
+
+                                                        // ambil data dari tombol
+                                                        let id = this.dataset.id;
+                                                        let hari = this.dataset.hari;
+                                                        let jam_mulai = this.dataset.jam_mulai;
+                                                        let jam_selesai = this.dataset.jam_selesai;
+                                                        let status = this.dataset.status;
+
+                                                        // masukkan ke form modal
+                                                        document.getElementById('id_jk').value = id;
+                                                        document.getElementById('titleJK').innerHTML =
+                                                            "Edit Data " + hari;
+                                                        document.getElementById('jam_mulai').value = jam_mulai;
+                                                        document.getElementById('jam_selesai').value =
+                                                            jam_selesai;
+                                                        document.getElementById('aktif_jk').value =
+                                                            status;
+                                                    });
+                                                });
+                                            </script>
+                                            <!-- /Modal Edit Jam Kerja -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover mb-0 super-small-table"
+                                                style="width: 60%;">
+                                                <thead class="bg-info text-center">
+                                                    <tr>
+                                                        <th>Tanggal</th>
+                                                        <th>Keterangan</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-center">
+                                                    <?php foreach ($dataHariLibur as $dtharlib): ?>
+                                                        <tr>
+                                                            <td><?= $dtharlib['tanggal_libnas'] ?></td>
+                                                            <td><?= $dtharlib['ket_libnas'] ?></td>
+                                                            <td>
+                                                                <a href="<?= base_url('user/detail_libur/' . $dtharlib['tanggal_libnas']) ?>"
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        <?php endif; ?>
                         <br>
                     </div>
                 </div>
