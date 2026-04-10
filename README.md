@@ -4,7 +4,10 @@
 ### ⚠ PENTING!!!
 Tambahkan code berikut pada Controller yang memiliki function `pengajuan_spm()` :
 ``` php
-$indicator="kunci";
+$this->load->library('JamKerjaLogic_libra');
+$data['status_kerja'] = $this->jamkerjalogic_libra->getStatusMessage();
+
+$indicator = $this->jamkerjalogic_libra->isJamKerja() ? 'buka' : 'kunci';
 $scriptMap = [
       'kunci' => 'assets/js/tombolKabur.js',
       'buka'  => 'assets/js/tombolKaburNormal.js',
@@ -14,16 +17,17 @@ $data['iniKunciTombolKabur'] = $scriptMap[$indicator] ?? null;
 ```
 ### 🌟 Penjelasan
 * Code di atas merupakan Mapping Array
+* `$this->load->library('JamKerjaLogic_libra');` untuk load library
+* `$data['status_kerja']` pesan yang akan dikirim ke view
 * `$indicator` merupakan kondisi kunci yang akan digunakan untuk mengatur tombol
-* Secara default kondisi di atas sama dengan:
-  ``` php
-  $indicator="kunci";
-  if($indikator == "kunci"){
-        $data['iniKunciTombolKabur'] = 'assets/js/tombolKabur.js';
-  } elseif($indikator == "buka"){
-        $data['iniKunciTombolKabur'] = 'assets/js/tombolKaburNormal.js';
-  }
-  ```
+* `$this->jamkerjalogic_libra->isJamKerja() ? 'buka' : 'kunci'` kondisi jam kerja akan dicek dari database oleh logic dari library.\
+  Jika `true` maka `$indicator` bernilai `buka`, jika `false` maka `$indicator` bernilai `kunci`
+* Secara default kondisi `$scriptMap[$indicator]` sama dengan:
+  * Kalau `$scriptMap[$indicator]` ADA → ambil nilainya
+    * nilai yang dimaksud sesuai yang ada di `$scriptMap`
+      * `'kunci'` bernilai `'assets/js/tombolKabur.js',`
+      * `'buka'` bernilai `'assets/js/tombolKaburNormal.js',`
+  * Kalau TIDAK ADA / undefined → pakai `null`
 
 ##
 
