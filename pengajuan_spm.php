@@ -136,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-center" id="iniPeringatan"></p>
+                    <p class="text-center text-danger" id="iniPeringatan"><?= $status_kerja ?></p>
                 <?php endif; ?>
                 <div class="row">
                     <div class="col-12">
